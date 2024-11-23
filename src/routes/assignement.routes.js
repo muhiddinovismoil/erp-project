@@ -1,6 +1,12 @@
 import { Router } from "express";
+import {
+    createAssignmentCon,
+    deleteAssignmentByIdCon,
+    getAllAssignmentsCon,
+    getAssignmentByIdCon,
+} from "../controllers/index.js";
 export const assignmentRouter = Router();
-assignmentRouter.get();
-assignmentRouter.get();
-assignmentRouter.post();
-assignmentRouter.delete();
+assignmentRouter.get("/", getAllAssignmentsCon);
+assignmentRouter.get("/:id", getAssignmentByIdCon);
+assignmentRouter.post("/", createAssignmentCon);
+assignmentRouter.delete("/:id", deleteAssignmentByIdCon);

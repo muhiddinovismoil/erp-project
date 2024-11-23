@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import {
+    assignmentRouter,
     authRouter,
     courseRouter,
     studentRouter,
@@ -16,7 +17,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/teachers", teachersRouter);
 app.use("/api/v1/students", studentRouter);
 app.use("/api/v1/courses", courseRouter);
-app.use("/api/v1/assignment");
+app.use("/api/v1/assignment", assignmentRouter);
 app.use((err, req, res, next) => {
     if (err) {
         return res.send(err.message);

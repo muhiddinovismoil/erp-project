@@ -1,8 +1,14 @@
 import { Router } from "express";
-import {} from "../controllers/index.js";
+import {
+    createCourseCon,
+    deleteCourseByIdCon,
+    getAllCoursesCon,
+    getCourseByIdCon,
+    updateCourseByIdCon,
+} from "../controllers/index.js";
 export const courseRouter = Router();
-courseRouter.get("/");
-courseRouter.get("/:id");
-courseRouter.post("/");
-courseRouter.put("/:id");
-courseRouter.delete("/:id");
+courseRouter.get("/", getAllCoursesCon);
+courseRouter.get("/:id", getCourseByIdCon);
+courseRouter.post("/", createCourseCon);
+courseRouter.put("/:id", updateCourseByIdCon);
+courseRouter.delete("/:id", deleteCourseByIdCon);
