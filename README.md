@@ -1,2 +1,13 @@
 # erp-project
+
 ExpressJs
+
+PLEASE RUN THIS COMMAND BEFORE YOU RUN APP
+
+```
+npm install
+```
+
+AND PLEASE DON'T FORGET TO CREATE YOUR OWN .env FILE
+
+ENJOY USING IT `:)`
