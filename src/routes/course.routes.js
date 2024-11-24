@@ -6,9 +6,17 @@ import {
     getCourseByIdCon,
     updateCourseByIdCon,
 } from "../controllers/index.js";
+import { coursesScheme } from "../validations/index.js";
+import { authGuard, roleGuard, validateData } from "../middleware/index.js";
 export const courseRouter = Router();
-courseRouter.get("/", getAllCoursesCon);
-courseRouter.get("/:id", getCourseByIdCon);
-courseRouter.post("/", createCourseCon);
-courseRouter.put("/:id", updateCourseByIdCon);
-courseRouter.delete("/:id", deleteCourseByIdCon);
+courseRouter.get("/", authGuard, getAllCoursesCon);
+courseRouter.get("/:id", authGuard, getCourseByIdCon);
+courseRouter.post(
+    "/",
+    validateData(coursesScheme),
+    authGuard,
+    roleGuard("admin"),
+    createCourseCon
+);
+courseRouter.put("/:id", authGuard, roleGuard("admin"), updateCourseByIdCon);
+courseRouter.delete("/:id", authGuard, roleGuard("admin"), deleteCourseByIdCon);

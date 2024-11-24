@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { authGuard, roleGuard } from "../middleware/index.js";
+import { studentsScheme } from "../validations/index.js";
+import { authGuard, validateData, roleGuard } from "../middleware/index.js";
 import {
     createStudentCon,
     deleteStudentByIdCon,
@@ -10,7 +11,13 @@ export const studentRouter = Router();
 
 studentRouter.get("/", authGuard, getAllStudentsCon);
 studentRouter.get("/:id", authGuard, getStudentByIdCon);
-studentRouter.post("/", authGuard, roleGuard("admin"), createStudentCon);
+studentRouter.post(
+    "/",
+    validateData(studentsScheme),
+    authGuard,
+    roleGuard("admin"),
+    createStudentCon
+);
 studentRouter.delete(
     "/:id",
     authGuard,
