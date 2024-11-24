@@ -7,6 +7,11 @@ import {
 export const getAllTeachersCon = async (req, res, next) => {
     try {
         const data = await getAllTeachersService();
+        if (!data) {
+            return res.status(400).send({
+                msg: "Teacher not found",
+            });
+        }
         res.status(200).send({
             msg: "ALL TEACHERS",
             teachers: data,
@@ -18,6 +23,11 @@ export const getAllTeachersCon = async (req, res, next) => {
 export const getTeacherByIdCon = async (req, res, next) => {
     try {
         const data = await getTeacherByIdService(req.params.id);
+        if (!data) {
+            return res.status(400).send({
+                msg: "Teacher not found",
+            });
+        }
         res.status(200).send({
             msg: "TEACHER FOUND",
             teachers: data,
