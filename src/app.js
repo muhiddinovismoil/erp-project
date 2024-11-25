@@ -1,18 +1,37 @@
 import express from "express";
 import morgan from "morgan";
+import passport from "passport";
+import session from "express-session";
+import cookieParser from "cookie-parser";
 import {
     assignmentRouter,
     authRouter,
     courseRouter,
+    googleRouter,
     studentRouter,
     teachersRouter,
 } from "./routes/index.js";
 import { logger } from "./utils/index.js";
 import { createTables } from "./database/index.js";
 const app = express();
+app.use(
+    session({
+        secret: "asdvfbfgtre",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            secure: false,
+        },
+    })
+);
+
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/v1/", googleRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/teachers", teachersRouter);
 app.use("/api/v1/students", studentRouter);
