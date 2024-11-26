@@ -1,6 +1,5 @@
-# erp-project
+# ERP Project
 
-ERP Project
 Welcome to the ERP Project built with Express.js! This project is a robust solution for managing various operations, including homework management, lessons, and more.
 
 Prerequisites
