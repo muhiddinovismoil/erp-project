@@ -9,8 +9,19 @@ import {
 } from "../controllers/index.js";
 import { lessonSchema } from "../validations/index.js";
 export const lessonsRouter = Router();
-lessonsRouter.get("/", getAllLessonsCon);
-lessonsRouter.get("/:id", getLessonByIdCon);
-lessonsRouter.post("/", createLessonCon);
-lessonsRouter.put("/:id", updateLessonByIdCon);
-lessonsRouter.delete("/:id", deleteLessonByIdCon);
+lessonsRouter.get("/", authGuard, getAllLessonsCon);
+lessonsRouter.get("/:id", authGuard, getLessonByIdCon);
+lessonsRouter.post(
+    "/",
+    authGuard,
+    roleGuard("teacher"),
+    validateData(lessonSchema),
+    createLessonCon
+);
+lessonsRouter.put("/:id", authGuard, roleGuard("teacher"), updateLessonByIdCon);
+lessonsRouter.delete(
+    "/:id",
+    authGuard,
+    roleGuard("teacher", "admin"),
+    deleteLessonByIdCon
+);

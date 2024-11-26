@@ -37,7 +37,7 @@ export const createHomeworkService = async (body) => {
 export const updateHomeworkByIdService = async (id, body) => {
     try {
         const data = await erp("homeworks")
-            .update({ ...body })
+            .update({ ...body, status: "tahrirlangan" })
             .where("id", id)
             .returning("*");
         if (!data[0]) {

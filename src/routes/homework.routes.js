@@ -11,6 +11,6 @@ import { homeworkSchema } from "../validations/index.js";
 export const homeworksRouter = Router();
 homeworksRouter.get("/", getAllHomeworksCon);
 homeworksRouter.get("/:id", getHomeworkByIdCon);
-homeworksRouter.post("/", createHomeworkCon);
+homeworksRouter.post("/", validateData(homeworkSchema), createHomeworkCon);
 homeworksRouter.put("/:id", updateHomeworkByIdCon);
 homeworksRouter.delete("/:id", deleteHomeworkByIdCon);
