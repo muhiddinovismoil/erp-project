@@ -41,13 +41,23 @@ Make sure to create your own .env file in the root of the project. This file is 
 Here's an example of the .env file:
 
 ```
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-DB_NAME=your_db_name
-JWT_SECRET=your_jwt_secret_key
 PORT=3000
+# DATABASE
+PG_PASSWORD = 1111
+PG_USER = postgres
+PG_NAME = postgres
+PG_HOST = localhost
+PG_PORT = 5432
+# USER EMAIL SETTINGS
+USER_EMAIL= // your account
+USER_APP_PASSWORD= // app password of your account
+# WEB TOKENS
+JWT_ACCESS_SECRET = qwerty
+JWT_ACCESS_TIME = 1h
+JWT_REFRESH_SECRET = qwerty123
+JWT_REFRESH_TIME = 3h
+CLIENT_ID= //your client id from console google cloud
+CLIENT_SECRET=//your client id from console google cloud
 ```
 
 Replace the values with your actual environment settings.
@@ -65,27 +75,10 @@ Run the Application
 After completing the setup, you can start the server:
 
 ```
-npm start
+npm run dev
 ```
 
 By default, the application will run on http://localhost:3000, but you can change the port in your .env file.
-
-Test the API
-
-Use Postman or Insomnia to test the API endpoints. The API supports CRUD operations for entities like homeworks, lessons, and others (depending on your specific implementation).
-Example POST request to create a homework:
-
-```
-POST http://localhost:3000/homeworks
-{
-"title": "Math Homework",
-"description": "Complete exercises from page 10 to 20.",
-"homework_file": "math_homework.pdf",
-"status": "jarayonda",
-"start_time": "2024-11-27T10:00:00.000Z",
-"end_time": "2024-11-27T12:00:00.000Z"
-}
-```
 
 Folder Structure
 Here’s an overview of the main folders in the project:
@@ -138,3 +131,5 @@ This project is licensed under the MIT License.
 
 Enjoy Using It! 😊
 Thank you for using this ERP Project. If you encounter any issues or have questions, feel free to open an issue or reach out to the maintainers.
+
+Here you can contact with me: muhiddinovi45@gmail.com
