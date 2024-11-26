@@ -16,7 +16,9 @@ export const createTables = async () => {
                     .timestamp("last_login")
                     .defaultTo(erp.fn.now())
                     .notNullable();
-                table.enu("role", ["student", "teacher", "admin"]);
+                table
+                    .enu("role", ["student", "teacher", "admin"])
+                    .defaultTo("student");
             });
             logger.info("Users Table Created");
         }
@@ -45,11 +47,53 @@ export const createTables = async () => {
             });
             logger.info(`Students Table Created`);
         }
+        if (!(await erp.schema.hasTable("homeworks"))) {
+            await erp.schema.createTable("homeworks", (table) => {
+                table.increments("id").primary();
+                table.string("title").notNullable();
+                table.string("description");
+                table.string("homework_file");
+                table
+                    .enu("status", ["jarayonda", "tahrirlangan"])
+                    .defaultTo("jarayonda");
+                table.timestamp("start_time").notNullable();
+                table.timestamp("end_time").notNullable();
+            });
+        }
+        if (!(await erp.schema.hasTable("lessons"))) {
+            await erp.schema.createTable("lessons", (table) => {
+                table.increments("id").primary();
+                table.string("title").notNullable();
+                table.string("lesson_video").notNullable();
+                table.string("comment");
+                table.integer("rating").notNullable();
+                table
+                    .integer("homework_id")
+                    .unsigned()
+                    .references("id")
+                    .inTable("homeworks")
+                    .notNullable();
+                table
+                    .timestamp("created_at")
+                    .defaultTo(erp.fn.now())
+                    .notNullable();
+                table
+                    .timestamp("updated_at")
+                    .defaultTo(erp.fn.now())
+                    .notNullable();
+            });
+        }
         if (!(await erp.schema.hasTable("courses"))) {
             await erp.schema.createTable("courses", (table) => {
                 table.increments("id").primary();
                 table.string("name").notNullable();
                 table.string("desc").notNullable();
+                table
+                    .integer("lesson_id")
+                    .unsigned()
+                    .references("id")
+                    .inTable("lessons")
+                    .notNullable();
                 table
                     .timestamp("start_time")
                     .defaultTo(erp.fn.now())
