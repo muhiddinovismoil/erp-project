@@ -52,12 +52,12 @@ PORT=3000
 
 Replace the values with your actual environment settings.
 
-Migrate Database (Optional)
+To create all tables (Optional)
 
 If your project involves a database, make sure the database is set up correctly. Run the migration scripts (if applicable) to create the necessary tables:
 
 ```
-npx knex migrate:latest
+http://localhost:PORT/api/v1/setup
 ```
 
 Run the Application
