@@ -6,6 +6,7 @@ import {
     deleteLessonByIdService,
 } from "../services/index.js";
 import { logger } from "../utils/index.js";
+// Lessons Controller
 export const getAllLessonsCon = async (req, res, next) => {
     try {
         logger.info("Route: /api/v1/lessons METHOD: GET");

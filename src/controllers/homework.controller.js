@@ -6,6 +6,7 @@ import {
     deleteHomeworkByIdService,
 } from "../services/index.js";
 import { logger } from "../utils/index.js";
+// Homework Controller
 export const getAllHomeworksCon = async (req, res, next) => {
     try {
         logger.info("Route: /api/v1/homeworks METHOD: GET");

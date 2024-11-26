@@ -1,4 +1,5 @@
 import { erp } from "../database/index.js";
+// Homework Service
 export const getAllHomeworksService = async () => {
     try {
         const data = await erp.select("*").from("homeworks");
