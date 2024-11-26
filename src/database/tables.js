@@ -59,6 +59,7 @@ export const createTables = async () => {
                 table.timestamp("start_time").notNullable();
                 table.timestamp("end_time").notNullable();
             });
+            logger.info(`Homeworks Table Created`);
         }
         if (!(await erp.schema.hasTable("lessons"))) {
             await erp.schema.createTable("lessons", (table) => {
@@ -82,6 +83,7 @@ export const createTables = async () => {
                     .defaultTo(erp.fn.now())
                     .notNullable();
             });
+            logger.info(`Lessons Table Created`);
         }
         if (!(await erp.schema.hasTable("courses"))) {
             await erp.schema.createTable("courses", (table) => {
