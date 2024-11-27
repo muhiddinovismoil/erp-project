@@ -85,6 +85,20 @@ export const createTables = async () => {
             });
             logger.info(`Lessons Table Created`);
         }
+        if (!(await erp.schema.hasTable("exams"))) {
+            await erp.schema.createTable("exams", (table) => {
+                table.increments("id").primary();
+                table.string("title").notNullable();
+                table.string("file").notNullable();
+                table.string("comment").notNullable();
+                table
+                    .enu("status", ["jarayonda", "tahrirlangan"])
+                    .defaultTo("jarayonda");
+                table.timestamp("start_time").notNullable();
+                table.timestamp("end_time").notNullable();
+            });
+            logger.info(`Exams Table Created`);
+        }
         if (!(await erp.schema.hasTable("courses"))) {
             await erp.schema.createTable("courses", (table) => {
                 table.increments("id").primary();
@@ -95,6 +109,12 @@ export const createTables = async () => {
                     .unsigned()
                     .references("id")
                     .inTable("lessons")
+                    .notNullable();
+                table
+                    .integer("exam_id")
+                    .unsigned()
+                    .references("id")
+                    .inTable("exams")
                     .notNullable();
                 table
                     .timestamp("start_time")

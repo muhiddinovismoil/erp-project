@@ -5,3 +5,4 @@ export * from "./teacher.controller.js";
 export * from "./assignement.controller.js";
 export * from "./homework.controller.js";
 export * from "./lessons.controller.js";
+export * from "./exams.controller.js";

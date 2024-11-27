@@ -5,3 +5,4 @@ export * from "./courses.validation.js";
 export * from "./assignement.validation.js";
 export * from "./homework.validation.js";
 export * from "./lesson.validation.js";
+export * from "./exams.validation.js";

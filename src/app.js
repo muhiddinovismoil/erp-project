@@ -12,6 +12,7 @@ import {
     teachersRouter,
     homeworksRouter,
     lessonsRouter,
+    examsRouter,
 } from "./routes/index.js";
 import { logger } from "./utils/index.js";
 import { createTables } from "./database/index.js";
@@ -41,6 +42,7 @@ app.use("/api/v1/courses", courseRouter);
 app.use("/api/v1/assignment", assignmentRouter);
 app.use("/api/v1/lessons", lessonsRouter);
 app.use("/api/v1/homeworks", homeworksRouter);
+app.use("/api/v1/exams", examsRouter);
 app.use((err, req, res, next) => {
     if (err) {
         return res.send(err.message);

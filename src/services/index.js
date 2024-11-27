@@ -6,3 +6,4 @@ export * from "./assignement.service.js";
 export * from "./google.service.js";
 export * from "./homework.service.js";
 export * from "./lessons.service.js";
+export * from "./exams.service.js";
