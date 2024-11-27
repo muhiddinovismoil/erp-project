@@ -9,8 +9,13 @@ import {
 import { authGuard, roleGuard, validateData } from "../middleware/index.js";
 import { examsSchema } from "../validations/index.js";
 export const examsRouter = Router();
-examsRouter.get("/", getAllExamsCon);
-examsRouter.get("/:id", getExamByIdCon);
-examsRouter.post("/", createExamCon);
-examsRouter.put("/:id", updateExamByIdCon);
-examsRouter.delete("/:id", deleteExamByIdCon);
+examsRouter.get("/", authGuard, getAllExamsCon);
+examsRouter.get("/:id", authGuard, getExamByIdCon);
+examsRouter.post("/", validateData(examsSchema), authGuard, createExamCon);
+examsRouter.put("/:id", authGuard, roleGuard("teacher"), updateExamByIdCon);
+examsRouter.delete(
+    "/:id",
+    authGuard,
+    roleGuard("teacher", "admin"),
+    deleteExamByIdCon
+);
